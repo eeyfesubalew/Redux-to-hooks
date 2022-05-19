@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 // import { useDispatch } from 'react-redux';
-
 import Card from "../UI/Card";
 import "./ProductItem.css";
-import { toggleFav } from "../../store/actions/products";
-
+import { ProductContext } from "../../context/products-context";
 const ProductItem = (props) => {
-  // const dispatch = useDispatch();
+  const toggleFav = useContext(ProductContext).toggleFav;
 
-  // const toggleFavHandler = () => {
-  //   dispatch(toggleFav(props.id));
-  // };
+  const toggleFavHandler = () => {
+    toggleFav(props.id);
+  };
 
   return (
     <Card style={{ marginBottom: "1rem" }}>
@@ -19,7 +17,7 @@ const ProductItem = (props) => {
         <p>{props.description}</p>
         <button
           className={!props.isFav ? "button-outline" : ""}
-          // onClick={toggleFavHandler}
+          onClick={toggleFavHandler}
         >
           {props.isFav ? "Un-Favorite" : "Favorite"}
         </button>
